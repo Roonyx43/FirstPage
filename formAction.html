@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      </style>
+    <title>Formulário - Ação</title>
+</head>
+<body>
+    <header>
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Página Inicial</a></li>
+                    <li><a href="form.html">Cadastro de Formulário</a></li>
+                    <li><a href="about.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <h1 class="title-header">Loch's</h1>
+        </div>
+        <div class="formaction-header">
+            <li><a href="formAction.html">Formulário</a></li>
+        </div>
+    </header>
+
+    <main>
+        <h2>Resultado do Formulário</h2>
+        <div id="formResult"></div>
+
+        <script>
+            function getURLParameters() {
+                const searchParams = new URLSearchParams(window.location.search);
+                return searchParams;
+            }
+
+            // Funções de formatação
+            function formatPhone(phone) {
+                // Assumindo que o formato do telefone seja (XX) XXXX-XXXX
+                return `(${phone.substring(0, 2)}) ${phone.substring(2, 6)}-${phone.substring(6)}`;
+            }
+
+            function formatCEP(cep) {
+                // Assumindo que o formato do CEP seja XXXXX-XXX
+                return `${cep.substring(0, 5)}-${cep.substring(5)}`;
+            }
+
+            function formatCPF(cpf) {
+                // Assumindo que o formato do CPF seja XXX.XXX.XXX-XX
+                return `${cpf.substring(0, 3)}.${cpf.substring(3, 6)}.${cpf.substring(6, 9)}-${cpf.substring(9)}`;
+            }
+
+            function displayFormData() {
+                const params = getURLParameters();
+
+                document.getElementById('formResult').innerHTML = `
+                    <p>Nome: ${params.get('name') || ''}</p>
+                    <p>E-mail: ${params.get('email') || ''}</p>
+                    <p>Telefone: ${formatPhone(params.get('phone')) || ''}</p>
+                    <p>CEP: ${formatCEP(params.get('cep')) || ''}</p>
+                    <p>CPF: ${formatCPF(params.get('cpf')) || ''}</p>
+                `;
+            }
+
+            displayFormData();
+        </script>
+    </main>
+
+    <footer>
+        Contato: <a href="https://wa.me/5541985190602" target="_blank">+55 (41) 9 8519-0602 (WhatsApp)</a>
+        <br>
+        Email: <a href="mailto:matheusdloch@gmail.com">matheusdloch@gmail.com</a>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
